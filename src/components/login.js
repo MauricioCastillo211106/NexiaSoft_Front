@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "./styles/login.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +27,12 @@ const Login = () => {
 
     fetch("https://nexiasoftpi-production.up.railway.app/api/user/login", requestOptions)
       .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then((result) => {
+        
+        console.log(result)
+        navigate("/Datos");
+      }
+      )
       .catch((error) => console.log("error", error));
   };
 
